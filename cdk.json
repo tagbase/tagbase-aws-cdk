@@ -1,5 +1,5 @@
 {
-  "app": "python3 app.py",
+  "app": "python3 src/app.py",
   "watch": {
     "include": [
       "**"
@@ -11,7 +11,7 @@
       "source.bat",
       "**/__init__.py",
       "python/__pycache__",
-      "tests"
+      "src/tests"
     ]
   },
   "context": {
@@ -22,6 +22,7 @@
     "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": true,
     "@aws-cdk-containers/ecs-service-extensions:enableDefaultLogDriver": true,
     "@aws-cdk/aws-ec2:uniqueImdsv2TemplateName": true,
+    "@aws-cdk/aws-iam:minimizePolicies": true,
     "@aws-cdk/core:target-partitions": [
       "aws",
       "aws-cn"
