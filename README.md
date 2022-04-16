@@ -26,7 +26,13 @@ associated resources such as a security groups, inbound and outbound rules, etc.
 * [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_prerequisites);
 follow the tutorial thoroughly... it will way off.
 
-## High-level Guide
+# Configuration
+
+Define the following global environment variables
+* `TAGBASE_AWS_ACCOUNT`: The AWS account number to use for the deployment 
+* `TAGBASE_DEFAULT_REGION`: The target [AWS region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)
+
+# High-level Guide
 
 The `cdk.json` file tells the CDK Toolkit how to execute the app.
 
@@ -56,10 +62,22 @@ If you are a Windows platform, you would activate the virtualenv like this:
 % .venv\Scripts\activate.bat
 ```
 
+To deactivate the vurtualenv, do this:
+
+```
+% deactivate
+```
+
 Once the virtualenv is activated, you can install the required dependencies.
 
 ```
 $ pip install -r requirements.txt
+```
+
+Bootstrap the CDK deployment
+
+```
+% cdk bootstrap
 ```
 
 At this point you can now synthesize the CloudFormation template for this code.
@@ -68,15 +86,32 @@ At this point you can now synthesize the CloudFormation template for this code.
 $ cdk synth
 ```
 
+N.B. If you are warned about runtime issues due to your node version not being supported, 
+then you should upgrade to a supported node version as indicated in the warnings.
+
 To add additional dependencies, for example other CDK libraries, just add
 them to the `setup.py` file and rerun the `pip install -r requirements.txt`
 command.
 
-## Configuration
+# Deploying
 
+There are a few options for deploying.
 
+## Deploying the entire stack
 
-## Useful commands
+This deploys both the VPC and PostgreSQL stacks.
+```
+% cdk deploy --all
+```
+
+## Deploying the PostgreSQL DB into an existing VPC
+
+Assumes that you already have a host VPC and wish to deploy the TagbaseDB stack into it.
+
+```
+% cdk deploy tagbase-db-stack
+```
+# Useful commands
 
  * `cdk ls`          list all stacks in the app
  * `cdk synth`       emits the synthesized CloudFormation template
