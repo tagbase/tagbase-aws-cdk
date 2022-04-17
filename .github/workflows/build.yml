@@ -26,7 +26,6 @@ jobs:
     - name: Run tox
       run: tox -e py
     - name: Fix code coverage paths
-      working-directory: tagbase_server/tagbase_server
       run: |
         sed -i "s/\/home\/runner\/work\/tagbase-aws-cdk\/tagbase-aws-cdk/\/github\/workspace\/.\/.\//g" coverage.xml
     - name: SonarCloud Analysis
@@ -48,21 +47,20 @@ jobs:
           -Dsonar.tests=src/tests
           -Dsonar.test.inclusions=tests/unit/**
           -Dsonar.verbose=true
-  # tox_tests:
-  #   name: Tox Testing
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       python: ["3.7", "3.8", "3.9", "3.10"]
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Setup Python
-  #       uses: actions/setup-python@v2
-  #       with:
-  #         python-version: ${{ matrix.python }}
-  #     - name: Install tox and any other packages
-  #       run: pip install tox
-  #     - name: Run tox
-  #       working-directory: tagbase_server
-  #       # Run tox using the version of Python in `PATH`
-  #       run: tox -e py
+  tox_tests:
+    name: Tox Testing
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.7", "3.8", "3.9", "3.10"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install tox and any other packages
+        run: pip install tox
+      - name: Run tox
+        # Run tox using the version of Python in `PATH`
+        run: tox -e py
