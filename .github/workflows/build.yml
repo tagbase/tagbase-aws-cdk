@@ -28,9 +28,9 @@ jobs:
       run: pip install tox
     - name: Run tox
       run: tox -e py
-    - name: Fix code coverage paths
-      run: |
-        sed -i "s/\/home\/runner\/work\/tagbase-aws-cdk\/tagbase-aws-cdk/\/github\/workspace\/.\/.\//g" coverage.xml
+    # - name: Fix code coverage paths
+    #   run: |
+    #     sed -i "s/\/home\/runner\/work\/tagbase-aws-cdk\/tagbase-aws-cdk/\/github\/workspace\/.\/.\//g" coverage.xml
     - name: SonarCloud Analysis
       if: ${{ github.event_name != 'pull_request' || (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]') }}
       uses: sonarsource/sonarcloud-github-action@master
@@ -38,7 +38,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
-        projectBaseDir: tagbase_server/tagbase_server
         args: >
           -Dsonar.exclusions=test/**
           -Dsonar.login=35f9ef0c6d604d088bec9a2bd5b1a1c3021eced9
