@@ -42,7 +42,7 @@ jobs:
           -Dsonar.organization=tagbase
           -Dsonar.projectKey=tagbase_tagbase-aws-cdk
           -Dsonar.python.coverage.reportPaths=coverage.xml
-          -Dsonar.python.version=3.7,3.8,3.9,3.10
+          -Dsonar.python.version=3.9,3.10
           -Dsonar.sources=src
           -Dsonar.tests=src/tests
           -Dsonar.test.inclusions=tests/unit/**
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ["3.7", "3.8", "3.9", "3.10"]
+        python: ["3.9", "3.10"]
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python
