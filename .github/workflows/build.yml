@@ -20,7 +20,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python }}
+        python-version: ['3.9', '3.10']
     - name: Install tox and any other packages
       run: pip install tox
     - name: Run tox
