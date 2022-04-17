@@ -9,7 +9,8 @@ from tagbase_vpc.tagbase_vpc_stack import TagbaseVPCStack
 @pytest.mark.skip(reason="AWS environment variables need to be set. See README.")
 def test_tagbase_vpc_created():
     env = cdk.Environment(
-        account=os.getenv("TAGBASE_AWS_ACCOUNT"), region=os.getenv("TAGBASE_DEFAULT_REGION")
+        account=os.getenv("TAGBASE_AWS_ACCOUNT"),
+        region=os.getenv("TAGBASE_DEFAULT_REGION"),
     )
     app = cdk.App()
     stack = TagbaseVPCStack(app, "tagbase-vpc-stack", env=env)
