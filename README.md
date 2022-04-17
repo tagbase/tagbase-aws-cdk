@@ -1,5 +1,18 @@
 # Tagbase AWS CDK
 
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=bugs)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+![tagbase-server CI](https://github.com/tagbase/tagbase-server/actions/workflows/build.yml/badge.svg)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=tagbase_tagbase-aws-cdk&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=tagbase_tagbase-aws-cdk)
+
 ## Introduction
 
 This project leverages the [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) (CDK) to facilitate 

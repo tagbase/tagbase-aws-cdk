@@ -63,6 +63,8 @@ class TagbaseDBStack(Stack):
             storage_type=rds.StorageType.GP2,
             vpc=vpc,
             vpc_subnets=ec2.SubnetSelection(
-                subnets=vpc.select_subnets(subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT).subnets
+                subnets=vpc.select_subnets(
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT
+                ).subnets
             ),
         )

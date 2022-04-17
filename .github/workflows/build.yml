@@ -1,0 +1,68 @@
+name: main pr build
+
+on:
+  # Trigger analysis when pushing to main or pull requests, and when creating
+  # a pull request.
+  push:
+    branches:
+      - main
+  pull_request:
+      types: [opened, synchronize, reopened]
+jobs:
+  sonarcloud:
+    name: SonarCloud Analysis
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.10"]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python }}
+    - name: Install tox and any other packages
+      run: pip install tox
+    - name: Run tox
+      run: tox -e py
+    # - name: Fix code coverage paths
+    #   run: |
+    #     sed -i "s/\/home\/runner\/work\/tagbase-aws-cdk\/tagbase-aws-cdk/\/github\/workspace\/.\/.\//g" coverage.xml
+    - name: SonarCloud Analysis
+      if: ${{ github.event_name != 'pull_request' || (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]') }}
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        args: >
+          -Dsonar.exclusions=test/**
+          -Dsonar.login=35f9ef0c6d604d088bec9a2bd5b1a1c3021eced9
+          -Dsonar.organization=tagbase
+          -Dsonar.projectKey=tagbase_tagbase-aws-cdk
+          -Dsonar.python.coverage.reportPaths=coverage.xml
+          -Dsonar.python.version=3.9,3.10
+          -Dsonar.sources=src
+          -Dsonar.tests=src/tests
+          -Dsonar.test.inclusions=tests/unit/**
+          -Dsonar.verbose=true
+  tox_tests:
+    name: Tox Testing
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.10"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install tox and any other packages
+        run: pip install tox
+      - name: Run tox
+        # Run tox using the version of Python in `PATH`
+        run: tox -e py
