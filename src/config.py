@@ -67,28 +67,8 @@ class DevelopmentConfig(Config):
     TAGBASE_POSTGRES_MULTI_AZ = False
 
 
-class TestConfig(Config):
+class TestConfig(DevelopmentConfig):
     ENV = "test"
-
-    TAGBASE_COPY_TAGS_TO_SNAPSHOT = os.environ.get(
-        "TAGBASE_COPY_TAGS_TO_SNAPSHOT", False
-    )
-    TAGBASE_BACKUP_RETENTION_DAYS = os.environ.get("TAGBASE_BACKUP_RETENTION_DAYS", 0)
-    TAGBASE_POSTGRES_DELETION_PROTECTION = os.environ.get(
-        "TAGBASE_POSTGRES_DELETION_PROTECTION", False
-    )
-    TAGBASE_CDK_REMOVAL_POLICY = RemovalPolicy.DESTROY
-    TAGBASE_POSTGRES_INSTANCE_TYPE = os.environ.get(
-        "TAGBASE_POSTGRES_INSTANCE_TYPE", "t3.small"
-    )
-    TAGBASE_POSTGRES_ALLOCATED_STORAGE = os.environ.get("allocated_storage", 20)
-    # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling
-    TAGBASE_MAX_ALLOCATED_STORAGE = os.environ.get("TAGBASE_MAX_ALLOCATED_STORAGE", 200)
-    TAGBASE_MASTER_USER_PASSWORD = os.environ.get(
-        "TAGBASE_MASTER_USER_PASSWORD", "tagbase_server"
-    )
-    TAGBASE_POSTGRES_SECURITY_GROUP = Config.TAGBASE_POSTGRES_SECURITY_GROUP + "-" + ENV
-    TAGBASE_POSTGRES_MULTI_AZ = False
 
 
 class ProductionConfig(Config):
@@ -112,7 +92,7 @@ class ProductionConfig(Config):
         "TAGBASE_MAX_ALLOCATED_STORAGE", 1000
     )
     TAGBASE_MASTER_USER_PASSWORD = os.environ.get(
-        "TAGBASE_MASTER_USER_PASSWORD", "tagbase"
+        "TAGBASE_MASTER_USER_PASSWORD", "tagbase_server"
     )
     TAGBASE_POSTGRES_SECURITY_GROUP = Config.TAGBASE_POSTGRES_SECURITY_GROUP + "-" + ENV
     TAGBASE_POSTGRES_MULTI_AZ = True
