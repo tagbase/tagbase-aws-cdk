@@ -12,6 +12,9 @@ jobs:
   sonarcloud:
     name: SonarCloud Analysis
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.10"]
     steps:
     - uses: actions/checkout@v2
       with:
@@ -20,7 +23,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
-        python-version: ['3.9', '3.10']
+        python-version: ${{ matrix.python }}
     - name: Install tox and any other packages
       run: pip install tox
     - name: Run tox
