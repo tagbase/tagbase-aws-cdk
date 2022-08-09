@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     author="tagbase-server development team",
     install_requires=[
-        "aws-cdk-lib==2.27.0",
+        "aws-cdk-lib==2.36.0",
         "constructs>=10.0.0,<11.0.0",
     ],
     python_requires=">=3.9",
